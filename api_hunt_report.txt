@@ -1,0 +1,92 @@
+=== ALL GFI API REQUESTS (page load) ===
+  [GET] https://eoa2.bildung1.gfi.ihk.de/kammer/heilbronn-franken/anmeldung/BGP
+  [GET] https://eoa2.bildung1.gfi.ihk.de/styles.css
+  [GET] https://eoa2.bildung1.gfi.ihk.de/polyfills.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/polyfill-webcomp.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/polyfill-webcomp-es5.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/main.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Account
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/themes/luxtheme-authentic-min.css
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Version
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Teilnehmerservice/Kammer
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/User/interface-user-single--close-geometric-human-person-single-up-user.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/Login-Logout/interface-login--arrow-enter-frame-left-login-point-rectangle.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/User/interface-user-add--actions-add-close-geometric-human-person-plus-single-up-user.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/fonts/Blogger%20Sans/WOFF2/blogger_sans.ttf-webfont.woff2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/907.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/ihk-logo.png
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/logo.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Account/eoa2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/fonts/Source%20Sans%20Pro/WOFF2/sourcesanspro-regular-webfont.woff2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/fonts/Source%20Sans%20Pro/WOFF2/sourcesanspro-semibold-webfont.woff2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/50.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/Setting/interface-setting-menu-1--button-parallel-horizontal-lines-menu-navigation-three-hamburger.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/Pruefungen
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Teilnehmerservice/Features/heilbronn-franken
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Teilnehmerservice/Kammernummer/heilbronn-franken
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/IHK
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/Schluessel
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/Pruefung/2580270/VariantenDimensionen?anmeldungMode=SINGLE
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/Pruefung/2580270/Varianten
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/fonts/Blogger%20Sans/WOFF2/blogger_sans-medium-webfont.woff2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/fonts/Source%20Sans%20Pro/WOFF2/sourcesanspro-bold-webfont.woff2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Entertainment/Controll-Buttons/control-button-next--button-television-buttons-movies-skip-next-video-controls.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/logo.svg
+
+=== NEW GFI API REQUESTS AFTER CLICK (0 new) ===
+
+=== CLICK LOG ===
+  attempt 1: clicked lux/mat radio[0]: Gesamtprüfung (schriftlich + mündlich)
+  next: clicked: Weiter
+
+=== PAGE TEXT AFTER CLICK (first 1000 chars) ===
+Teilnehmendenservice
+Kammern
+Prüfungen
+Anmeldeformular für die Sachkundeprüfung für besondere Bewachungstätigkeiten nach § 34a GewO
+01
+Variantenauswahl
+02
+...
+Prüfungsart *
+Gesamtprüfung (schriftlich + mündlich)
+Wiederholungsprüfung (mündlich)
+Weiter
+
+Die mit einem * gekennzeichneten Felder sind Pflichtfelder.
+
+Bitte beachten Sie: Die Anmeldung zu einem bestimmten Termin ist für die IHK erst verbindlich, wenn der Termin von ihr -in der Regel per E-Mail- bestätigt wurde. Die Einladung und der Gebührenbescheid gehen Ihnen 10 Tage vor der Sachkundeprüfung mit gesonderter Post zu.
+
+Voraussetzungen für den Sachkundenachweis
+
+Die Prüfung gilt als bestanden, wenn im schriftlichen wie auch im mündlichen Prüfungsteil mindestens 50 Prozent erreicht wurden.
+
+Diese Prüfung wird ausschließlich in deutscher Sprache durchgeführt. Die Teilnehmer müssen somit über die erforderlichen deutschen Sprachkenntnisse verfügen.
+
+Mit der Anmeldung werden diese Voraussetzungen ausdrückl…
+
+=== CLICKABLE ELEMENTS ===
+DIV: Menü
+LUX-BUTTON: 
+BUTTON: Benutzermenü
+LUX-BUTTON: Kammern
+BUTTON: Kammern
+LUX-BUTTON: Prüfungen
+BUTTON: Prüfungen
+DIV: Menü
+LABEL: Prüfungsart *
+INPUT: Gesamtprüfung (schriftlich + mündlich)
+LABEL: Gesamtprüfung (schriftlich + mündlich)
+INPUT: Wiederholungsprüfung (mündlich)
+LABEL: Wiederholungsprüfung (mündlich)
+LUX-BUTTON: Weiter
+BUTTON: Weiter
+LUX-BUTTON: Datenschutz
+BUTTON: Datenschutz
+LUX-BUTTON: Impressum
+BUTTON: Impressum
+LUX-BUTTON: Lizenzhinweis
+BUTTON: Lizenzhinweis
+DIV: Menü
+LUX-BUTTON: Weiter
+BUTTON: Weiter

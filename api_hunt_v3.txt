@@ -1,0 +1,50 @@
+=== ALL API REQUESTS (page load) ===
+  [GET] https://eoa2.bildung1.gfi.ihk.de/kammer/heilbronn-franken/anmeldung/BGP
+  [GET] https://eoa2.bildung1.gfi.ihk.de/styles.css
+  [GET] https://eoa2.bildung1.gfi.ihk.de/polyfills.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/polyfill-webcomp.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/polyfill-webcomp-es5.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/main.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Account
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/themes/luxtheme-authentic-min.css
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Version
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Teilnehmerservice/Kammer
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/User/interface-user-single--close-geometric-human-person-single-up-user.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/Login-Logout/interface-login--arrow-enter-frame-left-login-point-rectangle.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/User/interface-user-add--actions-add-close-geometric-human-person-plus-single-up-user.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/fonts/Blogger%20Sans/WOFF2/blogger_sans.ttf-webfont.woff2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/907.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/ihk-logo.png
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/logo.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Account/eoa2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/fonts/Source%20Sans%20Pro/WOFF2/sourcesanspro-regular-webfont.woff2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/fonts/Source%20Sans%20Pro/WOFF2/sourcesanspro-semibold-webfont.woff2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/50.js
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/Setting/interface-setting-menu-1--button-parallel-horizontal-lines-menu-navigation-three-hamburger.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/Pruefungen
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Teilnehmerservice/Features/heilbronn-franken
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Teilnehmerservice/Kammernummer/heilbronn-franken
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/IHK
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/Schluessel
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/logo.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/Pruefung/2580270/VariantenDimensionen?anmeldungMode=SINGLE
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/Pruefung/2580270/Varianten
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/fonts/Blogger%20Sans/WOFF2/blogger_sans-medium-webfont.woff2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/fonts/Source%20Sans%20Pro/WOFF2/sourcesanspro-bold-webfont.woff2
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Entertainment/Controll-Buttons/control-button-next--button-television-buttons-movies-skip-next-video-controls.svg
+
+=== NEW AFTER RADIO CLICK (3) ===
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/Pruefung/2580270/Variante/SINGLE?Pr%C3%BCfungsart=Gesamtpr%C3%BCfung%20(schriftlich%20%2B%20m%C3%BCndlich)
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/Pruefung/2580270/Variante/85482017/Schema
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/Pruefung/2580270/Variante/85482017/Durchfuehrungen?anmeldungMode=SINGLE
+
+=== NEW AFTER WEITER CLICK (6) ===
+  [GET] https://eoa2.bildung1.gfi.ihk.de/fb/api/captcha/read
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/Calendar/interface-calendar--blank-calendar-date-day-month.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/Arrows/interface-arrows-button-down--arrow-down-keyboard.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/Arrows/interface-arrows-reload-1--arrows-load-arrow-sync-square-loading-reload-synchronize.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/Alerts/interface-alert-information-circle--information-frame-info-more-help-point-circle.svg
+  [GET] https://eoa2.bildung1.gfi.ihk.de/assets/icons/Interface-Essentials/Add-Remove-Delete/interface-delete-1--remove-add-button-buttons-delete.svg
+
+=== PAGE TEXT AFTER WEITER ===
+
