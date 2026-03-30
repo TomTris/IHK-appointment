@@ -7,7 +7,9 @@
 // Flags:
 //   -once              run once and exit
 //   -interval 5m       poll interval (default 5m)
-//   -alarm 2026-06-30  alert if any slot is on or before this date (default: last day of June 2026)
+//   -alarm 2026-06-30      alert if any slot is on or before this date
+//   -alarm 2026.06.30      same, dots also accepted
+//   -alarm 2026.04.01-2026.06.01  alert if slot is >= start AND <= end date
 
 package main
 
@@ -29,7 +31,8 @@ const apiURL = "https://eoa2.bildung1.gfi.ihk.de/fb/api/Elvis/heilbronn-franken/
 var (
 	once      = flag.Bool("once", false, "run once and exit")
 	interval  = flag.Duration("interval", 5*time.Minute, "poll interval")
-	alarmDate = flag.String("alarm", "2026-06-30", "alert if any open slot falls on or before this date (YYYY-MM-DD)")
+	alarmDate = flag.String("alarm", "2026-06-30",
+		"alert date: single (2026-06-30 or 2026.06.30) or range START-END (2026.04.01-2026.06.01)")
 )
 
 type Standort struct {
@@ -57,19 +60,71 @@ type ResponseItem struct {
 	Durchfuehrungen []Durchfuehrung `json:"durchfuehrungen"`
 }
 
+// normaliseDate replaces dots with dashes so both "2026.07.01" and
+// "2026-07-01" are accepted everywhere a YYYY-MM-DD string is expected.
+func normaliseDate(s string) string {
+	return strings.ReplaceAll(s, ".", "-")
+}
+
+// parseAlarm parses the -alarm flag into a (from, to) window.
+//
+//	"2026-06-30"              →  zero time  … 2026-06-30 23:59:59  (≤ end)
+//	"2026.04.01-2026.06.01"   →  2026-04-01 … 2026-06-01 23:59:59  (range)
+//
+// The separator between the two dates is always a single "-" that sits
+// between the two date tokens.  Because each token itself contains "-" after
+// normalisation we split on the first occurrence of "-" that appears after
+// position 10 (length of "YYYY-MM-DD").
+func parseAlarm(raw string) (from, to time.Time, err error) {
+	// Normalise dots → dashes
+	s := normaliseDate(raw)
+
+	// Detect range: two YYYY-MM-DD tokens joined by "-"
+	// After normalisation a range looks like "2026-04-01-2026-06-01".
+	// The join "-" is at position 10.
+	if len(s) == 21 && s[10] == '-' {
+		// "2026-04-01-2026-06-01"
+		startStr := s[:10]
+		endStr := s[11:]
+		from, err = time.ParseInLocation("2006-01-02", startStr, time.Local)
+		if err != nil {
+			return from, to, fmt.Errorf("ungültiges Start-Datum %q: %v", startStr, err)
+		}
+		to, err = time.ParseInLocation("2006-01-02", endStr, time.Local)
+		if err != nil {
+			return from, to, fmt.Errorf("ungültiges End-Datum %q: %v", endStr, err)
+		}
+		// include the whole end day
+		to = to.Add(24*time.Hour - time.Second)
+		return from, to, nil
+	}
+
+	// Single date → treat as upper bound (≤ date)
+	to, err = time.ParseInLocation("2006-01-02", s, time.Local)
+	if err != nil {
+		return from, to, fmt.Errorf("ungültiges Alarm-Datum %q: %v", raw, err)
+	}
+	to = to.Add(24*time.Hour - time.Second)
+	// from stays zero → no lower bound
+	return from, to, nil
+}
+
 func main() {
 	flag.Parse()
 	log.SetFlags(log.Ltime)
 
-	threshold, err := time.ParseInLocation("2006-01-02", *alarmDate, time.Local)
+	from, to, err := parseAlarm(*alarmDate)
 	if err != nil {
-		log.Fatalf("Ungültiges Alarm-Datum %q: %v", *alarmDate, err)
+		log.Fatalf("%v", err)
 	}
-	// include the whole alarm day
-	threshold = threshold.Add(24*time.Hour - time.Second)
 
 	log.Println("IHK Sachkundeprüfung §34a – Watcher gestartet")
-	log.Printf("Alarm wenn Termin ≤ %s", threshold.Format("02.01.2006"))
+	if from.IsZero() {
+		log.Printf("Alarm wenn Termin ≤ %s", to.Format("02.01.2006"))
+	} else {
+		log.Printf("Alarm wenn Termin zwischen %s und %s",
+			from.Format("02.01.2006"), to.Format("02.01.2006"))
+	}
 	if !*once {
 		log.Printf("Abfrage alle %s  (Ctrl+C zum Beenden)\n", *interval)
 	}
@@ -81,7 +136,7 @@ func main() {
 			log.Printf("FEHLER: %v", err)
 		} else {
 			report(termine, prev)
-			checkEarlySlots(termine, threshold)
+			checkSlots(termine, from, to)
 			prev = termine
 		}
 		if *once {
@@ -92,18 +147,25 @@ func main() {
 	}
 }
 
-// checkEarlySlots fires an alert for every bookable slot on or before threshold.
-func checkEarlySlots(termine []Durchfuehrung, threshold time.Time) {
+// checkSlots fires an alert for every bookable slot within the [from, to] window.
+// If from is zero, only the upper bound (≤ to) is checked.
+func checkSlots(termine []Durchfuehrung, from, to time.Time) {
 	for _, d := range termine {
 		if !d.AnmeldungMoeglich || d.FreiePlaetze <= 0 {
 			continue
 		}
 		t, err := parseDate(d.Datum)
-		if err != nil || t.After(threshold) {
+		if err != nil {
+			continue
+		}
+		if t.After(to) {
+			continue
+		}
+		if !from.IsZero() && t.Before(from) {
 			continue
 		}
 
-		msg := fmt.Sprintf("Früher Termin verfügbar: %s (%d Plätze frei) – Frist %s",
+		msg := fmt.Sprintf("Termin verfügbar: %s (%d Plätze frei) – Frist %s",
 			d.Name, d.FreiePlaetze, frist(d.Anmeldefrist))
 
 		log.Printf("🚨 ALARM: %s", msg)
@@ -112,7 +174,7 @@ func checkEarlySlots(termine []Durchfuehrung, threshold time.Time) {
 		fmt.Print("\a\a\a")
 
 		// macOS system notification (no-op on other platforms)
-		sendNotification("IHK §34a – Früher Termin!", msg)
+		sendNotification("IHK §34a – Termin gefunden!", msg)
 	}
 }
 
@@ -129,8 +191,6 @@ func sendNotification(title, body string) {
 	exec.Command("osascript", "-e", script).Run()
 
 	// 2. Play the system alert sound 3× in a row (loud, hard to miss)
-	//    /System/Library/Sounds/ contains: Basso, Blow, Bottle, Frog, Funk,
-	//    Glass, Hero, Morse, Ping, Pop, Purr, Sosumi, Submarine, Tink
 	go func() {
 		sound := "/System/Library/Sounds/Sosumi.aiff"
 		for i := 0; i < 3; i++ {
@@ -140,7 +200,7 @@ func sendNotification(title, body string) {
 	}()
 
 	// 3. Text-to-speech so you hear it even in another room
-	speech := fmt.Sprintf("Achtung! Früher IHK Prüfungstermin verfügbar: %s", body)
+	speech := fmt.Sprintf("Achtung! IHK Prüfungstermin verfügbar: %s", body)
 	go exec.Command("say", "-v", "Anna", speech).Run()
 }
 
