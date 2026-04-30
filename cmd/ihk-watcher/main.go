@@ -76,16 +76,15 @@ func normaliseDate(s string) string {
 // normalisation we split on the first occurrence of "-" that appears after
 // position 10 (length of "YYYY-MM-DD").
 func parseAlarm(raw string) (from, to time.Time, err error) {
-	// Normalise dots → dashes
-	s := normaliseDate(raw)
+	normaliseDate := normaliseDate(raw)
 
 	// Detect range: two YYYY-MM-DD tokens joined by "-"
 	// After normalisation a range looks like "2026-04-01-2026-06-01".
 	// The join "-" is at position 10.
-	if len(s) == 21 && s[10] == '-' {
+	if len(normaliseDate) == 21 && normaliseDate[10] == '-' {
 		// "2026-04-01-2026-06-01"
-		startStr := s[:10]
-		endStr := s[11:]
+		startStr := normaliseDate[:10]
+		endStr := normaliseDate[11:]
 		from, err = time.ParseInLocation("2006-01-02", startStr, time.Local)
 		if err != nil {
 			return from, to, fmt.Errorf("ungültiges Start-Datum %q: %v", startStr, err)
@@ -100,7 +99,7 @@ func parseAlarm(raw string) (from, to time.Time, err error) {
 	}
 
 	// Single date → treat as upper bound (≤ date)
-	to, err = time.ParseInLocation("2006-01-02", s, time.Local)
+	to, err = time.ParseInLocation("2006-01-02", normaliseDate, time.Local)
 	if err != nil {
 		return from, to, fmt.Errorf("ungültiges Alarm-Datum %q: %v", raw, err)
 	}
@@ -199,7 +198,7 @@ func sendNotification(title, body string) {
 		}
 	}()
 
-	// 3. Text-to-speech so you hear it even in another room
+	// 3. Text-to-speech so you hear it, no need to check manually
 	speech := fmt.Sprintf("Achtung! IHK Prüfungstermin verfügbar: %s", body)
 	go exec.Command("say", "-v", "Anna", speech).Run()
 }

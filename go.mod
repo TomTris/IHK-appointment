@@ -1,3 +1,3 @@
-module ihk-watcher
+module github.com/tomtris/ihk-appointment-watcher
 
-go 1.26.1
+go 1.21
